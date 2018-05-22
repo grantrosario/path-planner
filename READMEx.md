@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
    
@@ -138,3 +139,7 @@ still be compilable with cmake and make./
 ## How to write a README
 A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
 
+=======
+# path-planner
+Path planner to drive a car down a highway in a simulator
+>>>>>>> c262b406104b25cf83c33d776f7802ed78d40149
