@@ -1,6 +1,42 @@
-<<<<<<< HEAD
-# CarND-Path-Planning-Project
-Self-Driving Car Engineer Nanodegree Program
+
+
+## Vehicle Path Planner
+
+To enable a vehicle to navigate through traffic at a constant speed, respectively.
+
+### main.cpp explanation
+***
+
+This program is using a combination of Frenet coordinate transformations and spline interpolation (**spline.h**).
+
+* *Frenet* - Allows for easy specification of current correct lane for vehicle using two variables:  
+  * *d* - distance from center of road (current lane)
+  * *s* - distance from starting point along highway   
+
+* *Spline* - Smooths out the vehicle planned path to avoid sudden acceleration and jerk.
+
+__Path__
+
+* Using __*d*__ to calculate the desired lane, only three widely spaced Frenet points are used with __*s*__ values spaced 30m *(lines 403-405)*. This allows the vehicle to produce a smooth path.
+
+__Acceleration__
+
+* Reference velocity was always incremented or decremented by a constant value resulting in plus or minus 5 m/s^2 *(lines 449-458)*, allowing the vehicle to accelerate or decelerate at a constant speed less than 10 m/s^2.
+
+* The three anchor points were converted to local vehicle coordinate space so the math was simpler, then spline could be approximated linearly. Ultimately, this allows the vehicle to travel at the reference velocity and transverse each point every .02 seconds.
+
+__Lane Changing__
+
+* The sensor fusion data allowed the vehicle to see all other cars on the road. These cars Frenet values were used to see if they were in the same lane as the host vehicle as well as they're distance from the host vehicle *(lines 310-375)*. If the car in front is too close and a lane change is safe, the host vehicle will change lanes with spline interpolation allowing a smooth lane change.
+
+* Logically, if the vehicle sensed a car in front, it would check the left lane for a safe lane change. If that lane was occupied, it would check the right lane. If no lane was availabe, it would maintain speed at a safe distance until a lane became available.
+
+__Improvements__
+
+* Using a cost function to guage the increased speed better and projecting further ahead could provide potential improvements.
+
+***
+ 
    
 ### Simulator.
 You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).
